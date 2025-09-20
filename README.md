@@ -1,16 +1,23 @@
-# wavex
+# WaveX 🎵
 
-A new Flutter project.
+A simple Flutter music player app built with [audioplayers](https://pub.dev/packages/audioplayers).  
+It lets you play, pause, seek, and switch between multiple songs stored locally in your assets.  
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 🚀 Features
+- Play, pause, and resume music
+- Forward & rewind 10 seconds
+- Interactive timeline (seek bar)
+- Display song title and artist
+- Local assets for songs & cover art
+- Simple and clean UI
 
-A few resources to get you started if this is your first Flutter project:
+---
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 📸 Screenshots
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<p align="center">
+  <img src="screenshots/screenshot1.jpeg" alt="Screenshot 1" width="250"/>
+  <img src="screenshots/screenshot2.jpeg" alt="Screenshot 2" width="250"/>
+</p>
