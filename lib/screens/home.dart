@@ -12,8 +12,13 @@ class _HomeState extends State<Home> {
   bool isPlaying = false;
   final player = AudioPlayer();
   List<Map<String, String>> songs = [
-    {"title": "I Really Do", "artists": "Karan Aujla, Ikky"},
     {"title": "52 Bars", "artists": "Karan Aujla, Ikky"},
+    {"title": "Blank Space", "artists": "Taylor Swift"},
+    {"title": "Ishq Mein", "artists": "Monali Thakur"},
+    {"title": "I Knew You Were Trouble", "artists": "Taylor Swift"},
+    {"title": "I Really Do", "artists": "Karan Aujla, Ikky"},
+    {"title": "Red", "artists": "Taylor Swift"},
+    {"title": "Tere Liye", "artists": "Atif Aslam, Shreya Ghoshal"},
     {"title": "Winning Speech", "artists": "Karan Aujla, MXRCI"},
   ];
   late String songName = songs[0]["title"]!;
@@ -48,9 +53,11 @@ class _HomeState extends State<Home> {
           isPlaying = false;
         });
       } else {
-        await player.play(UrlSource(
-          'https://github.com/AmrendraOG/wavex/raw/refs/heads/master/assets/songs/$songName.mp3',
-        ));
+        await player.play(
+          UrlSource(
+            'https://github.com/AmrendraOG/wavex/raw/refs/heads/master/assets/songs/$songName.mp3',
+          ),
+        );
         setState(() {
           isPlaying = true;
         });
@@ -67,6 +74,34 @@ class _HomeState extends State<Home> {
           centerTitle: true,
         ),
         backgroundColor: Colors.black87,
+        drawer: Drawer(
+          backgroundColor: Colors.black87,
+          child: ListView(
+            children: [
+              DrawerHeader(
+                child: Padding(
+                  padding: EdgeInsets.all(16),
+                  child: Column(
+                    children: [
+                      Icon(Icons.music_note, color: Colors.cyan, size: 80),
+                      Text(
+                        "Created by Amrendra Maurya",
+                        style: TextStyle(color: Colors.white54, fontSize: 12),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              ListTile(
+                leading: Icon(Icons.home, color: Colors.cyan),
+                title: Text("Home", style: TextStyle(color: Colors.white)),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          ),
+        ),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -74,10 +109,26 @@ class _HomeState extends State<Home> {
               SizedBox(height: 16),
               ClipRRect(
                 borderRadius: BorderRadius.circular(8),
-                child: Image.network(
-                  'https://raw.githubusercontent.com/AmrendraOG/wavex/refs/heads/master/assets/covers/$songName.jpg',
+                child: Container(
+                  height: 240,
                   width: 240,
-                  fit: BoxFit.cover,
+                  decoration: BoxDecoration(color: Colors.grey.shade100),
+                  child: Image.network(
+                    'https://raw.githubusercontent.com/AmrendraOG/wavex/refs/heads/master/assets/covers/$songName.png',
+                    width: 240,
+                    fit: BoxFit.cover,
+                    loadingBuilder: (context, child, loadingProgress) {
+                      if (loadingProgress == null) {
+                        return child;
+                      }
+                      return const Center(child: CircularProgressIndicator());
+                    },
+                    errorBuilder: (context, error, stackTrace) {
+                      return const Center(
+                        child: Icon(Icons.error, color: Colors.red),
+                      );
+                    },
+                  ),
                 ),
               ),
               Column(
